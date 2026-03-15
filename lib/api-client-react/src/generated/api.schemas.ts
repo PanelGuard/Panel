@@ -8,3 +8,49 @@
 export interface HealthStatus {
   status: string;
 }
+
+export interface ContactInput {
+  /** @minLength 2 */
+  name: string;
+  email: string;
+  /** @minLength 8 */
+  phone: string;
+  /** @minLength 2 */
+  subject: string;
+  /** @minLength 10 */
+  message: string;
+}
+
+export interface ContactResponse {
+  success: boolean;
+  message: string;
+  id: number;
+}
+
+export interface ContactRecord {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  status: string;
+  createdAt: string;
+}
+
+export type UpdateStatusInputStatus =
+  (typeof UpdateStatusInputStatus)[keyof typeof UpdateStatusInputStatus];
+
+export const UpdateStatusInputStatus = {
+  new: "new",
+  read: "read",
+  replied: "replied",
+} as const;
+
+export interface UpdateStatusInput {
+  status: UpdateStatusInputStatus;
+}
+
+export interface ErrorResponse {
+  error: string;
+}

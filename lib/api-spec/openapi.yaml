@@ -1,6 +1,5 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
   description: API specification
@@ -10,6 +9,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: contact
+    description: Contact form operations
 paths:
   /healthz:
     get:
@@ -24,6 +25,74 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /contact:
+    post:
+      operationId: submitContact
+      tags: [contact]
+      summary: Submit contact form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactInput"
+      responses:
+        "201":
+          description: Contact submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactResponse"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /contact/list:
+    get:
+      operationId: listContacts
+      tags: [contact]
+      summary: List all contact submissions
+      responses:
+        "200":
+          description: List of contacts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ContactRecord"
+  /contact/{id}/status:
+    patch:
+      operationId: updateContactStatus
+      tags: [contact]
+      summary: Update contact status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateStatusInput"
+      responses:
+        "200":
+          description: Status updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactRecord"
+        "404":
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +102,84 @@ components:
           type: string
       required:
         - status
-
+    ContactInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+          minLength: 8
+        subject:
+          type: string
+          minLength: 2
+        message:
+          type: string
+          minLength: 10
+      required:
+        - name
+        - email
+        - phone
+        - subject
+        - message
+    ContactResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        id:
+          type: integer
+      required:
+        - success
+        - message
+        - id
+    ContactRecord:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        subject:
+          type: string
+        message:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - email
+        - phone
+        - subject
+        - message
+        - status
+        - createdAt
+    UpdateStatusInput:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [new, read, replied]
+      required:
+        - status
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error

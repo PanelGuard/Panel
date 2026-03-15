@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { z } from "zod";
 
 export const contactSchema = z.object({
@@ -11,19 +11,61 @@ export const contactSchema = z.object({
 
 export type ContactInput = z.infer<typeof contactSchema>;
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export function useSubmitContact() {
   return useMutation({
     mutationFn: async (data: ContactInput) => {
-      // Since there's no defined API endpoint for contact, we simulate a successful network request
-      // In a real scenario, this would be: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // We simulate a random failure sometimes just to show error handling is robust
-      if (Math.random() < 0.05) {
-         throw new Error("حدث خطأ في الخادم، يرجى المحاولة مرة أخرى.");
+      const res = await fetch(`${BASE}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error((err as any).error || "حدث خطأ في الإرسال، يرجى المحاولة مرة أخرى.");
       }
-      
-      return { success: true, message: "تم إرسال رسالتك بنجاح!" };
-    }
+      return res.json() as Promise<{ success: boolean; message: string; id: number }>;
+    },
   });
+}
+
+export function useListContacts() {
+  return useQuery({
+    queryKey: ["contacts"],
+    queryFn: async () => {
+      const res = await fetch(`${BASE}/api/contact/list`);
+      if (!res.ok) throw new Error("فشل تحميل الطلبات");
+      return res.json() as Promise<ContactRecord[]>;
+    },
+  });
+}
+
+export function useUpdateContactStatus() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, status }: { id: number; status: string }) => {
+      const res = await fetch(`${BASE}/api/contact/${id}/status`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status }),
+      });
+      if (!res.ok) throw new Error("فشل تحديث الحالة");
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["contacts"] });
+    },
+  });
+}
+
+export interface ContactRecord {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  status: string;
+  createdAt: string;
 }

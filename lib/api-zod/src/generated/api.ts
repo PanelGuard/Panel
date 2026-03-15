@@ -14,3 +14,59 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * @summary Submit contact form
+ */
+export const submitContactBodyNameMin = 2;
+
+export const submitContactBodyPhoneMin = 8;
+
+export const submitContactBodySubjectMin = 2;
+
+export const submitContactBodyMessageMin = 10;
+
+export const SubmitContactBody = zod.object({
+  name: zod.string().min(submitContactBodyNameMin),
+  email: zod.string().email(),
+  phone: zod.string().min(submitContactBodyPhoneMin),
+  subject: zod.string().min(submitContactBodySubjectMin),
+  message: zod.string().min(submitContactBodyMessageMin),
+});
+
+/**
+ * @summary List all contact submissions
+ */
+export const ListContactsResponseItem = zod.object({
+  id: zod.number(),
+  name: zod.string(),
+  email: zod.string(),
+  phone: zod.string(),
+  subject: zod.string(),
+  message: zod.string(),
+  status: zod.string(),
+  createdAt: zod.date(),
+});
+export const ListContactsResponse = zod.array(ListContactsResponseItem);
+
+/**
+ * @summary Update contact status
+ */
+export const UpdateContactStatusParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const UpdateContactStatusBody = zod.object({
+  status: zod.enum(["new", "read", "replied"]),
+});
+
+export const UpdateContactStatusResponse = zod.object({
+  id: zod.number(),
+  name: zod.string(),
+  email: zod.string(),
+  phone: zod.string(),
+  subject: zod.string(),
+  message: zod.string(),
+  status: zod.string(),
+  createdAt: zod.date(),
+});
