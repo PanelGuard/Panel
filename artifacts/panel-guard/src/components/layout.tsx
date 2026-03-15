@@ -91,16 +91,16 @@ export function Layout({ children }: LayoutProps) {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <img 
-                src={`${import.meta.env.BASE_URL}logo.jpg`} 
-                alt="Panel Guard Logo" 
-                className="h-12 md:h-14 w-auto object-contain rounded-md transition-transform group-hover:scale-105"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://via.placeholder.com/150x50?text=Panel+Guard';
-                }}
-              />
+              <div className="relative">
+                <img 
+                  src={`${import.meta.env.BASE_URL}logo.png`} 
+                  alt="Panel Guard Logo" 
+                  className="h-14 md:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+                  style={{ filter: "drop-shadow(0 0 10px hsl(var(--primary) / 0.6)) drop-shadow(0 0 20px hsl(var(--primary) / 0.3))" }}
+                />
+              </div>
               <div className="hidden sm:block">
-                <h1 className="font-display font-bold text-xl text-primary leading-none glow">
+                <h1 className="font-display font-bold text-xl text-primary leading-none" style={{ textShadow: "0 0 12px hsl(var(--primary) / 0.7)" }}>
                   {isAr ? "بانيل جارد" : "Panel Guard"}
                 </h1>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -276,8 +276,14 @@ export function Layout({ children }: LayoutProps) {
             
             {/* Brand Col */}
             <div className="col-span-1 lg:col-span-1">
-              <Link href="/" className="inline-block mb-6">
-                <h1 className="font-display font-bold text-2xl text-primary leading-none glow">
+              <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
+                <img
+                  src={`${import.meta.env.BASE_URL}logo.png`}
+                  alt="Panel Guard Logo"
+                  className="h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+                  style={{ filter: "drop-shadow(0 0 12px hsl(var(--primary) / 0.7)) drop-shadow(0 0 24px hsl(var(--primary) / 0.4))" }}
+                />
+                <h1 className="font-display font-bold text-2xl text-primary leading-none" style={{ textShadow: "0 0 12px hsl(var(--primary) / 0.7)" }}>
                   {isAr ? "بانيل جارد" : "Panel Guard"}
                 </h1>
               </Link>

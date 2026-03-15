@@ -78,22 +78,36 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Hero Visual */}
+            {/* Hero Visual — Logo */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="hidden lg:block relative h-[500px]"
+              transition={{ duration: 0.9, delay: 0.2 }}
+              className="hidden lg:flex items-center justify-center relative h-[500px]"
             >
-              <img 
-                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=1000&fit=crop" 
-                alt="Server Infrastructure" 
-                className="absolute right-0 top-1/2 -translate-y-1/2 w-4/5 h-[80%] object-cover rounded-3xl shadow-2xl border border-white/10 opacity-80 mix-blend-luminosity"
+              {/* Outer glow rings */}
+              <div className="absolute w-80 h-80 rounded-full border border-primary/20 animate-ping" style={{ animationDuration: "3s" }} />
+              <div className="absolute w-96 h-96 rounded-full border border-accent/10 animate-ping" style={{ animationDuration: "4.5s", animationDelay: "1s" }} />
+              <div className="absolute w-72 h-72 rounded-full bg-primary/10 blur-3xl animate-pulse" />
+              <div className="absolute w-60 h-60 rounded-full bg-accent/10 blur-2xl animate-pulse" style={{ animationDelay: "1.5s" }} />
+
+              {/* Logo image — prominent, no background */}
+              <motion.img
+                src={`${import.meta.env.BASE_URL}logo.png`}
+                alt="Panel Guard Logo"
+                className="relative z-10 w-72 h-72 object-contain"
+                style={{
+                  filter: "drop-shadow(0 0 30px hsl(var(--primary) / 0.8)) drop-shadow(0 0 60px hsl(var(--primary) / 0.4)) drop-shadow(0 0 100px hsl(var(--accent) / 0.3))"
+                }}
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-background via-transparent to-transparent z-10" />
-              <div className="absolute left-0 bottom-10 glass p-6 rounded-2xl max-w-xs shadow-xl border border-white/20 animate-bounce-slow z-20 glow">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+
+              {/* Floating badge */}
+              <div className="absolute bottom-10 left-0 glass p-5 rounded-2xl max-w-xs shadow-xl border border-white/20 z-20"
+                style={{ boxShadow: "0 0 20px hsl(var(--primary) / 0.3)" }}>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
                     <CheckCircle2 className="w-6 h-6 text-accent" />
                   </div>
                   <div>
