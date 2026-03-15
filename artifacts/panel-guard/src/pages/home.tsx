@@ -51,7 +51,7 @@ export default function Home() {
               </motion.h1>
               
               <motion.p variants={fadeIn} className="text-lg md:text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
-                بانل جارد تقدم حلول تقنية متكاملة من البنية التحتية إلى الأمن السيبراني لضمان نمو واستقرار أعمالك في العصر الرقمي.
+                بانيل جارد تقدم حلول تقنية متكاملة من البنية التحتية إلى الأمن السيبراني لضمان نمو واستقرار أعمالك في العصر الرقمي.
               </motion.p>
               
               <motion.div variants={fadeIn} className="flex flex-wrap gap-4">
@@ -208,7 +208,7 @@ export default function Home() {
             </div>
 
             <div className="order-1 lg:order-2">
-              <span className="text-accent font-bold tracking-wider uppercase text-sm mb-2 block">لماذا بانل جارد؟</span>
+              <span className="text-accent font-bold tracking-wider uppercase text-sm mb-2 block">لماذا بانيل جارد؟</span>
               <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6">
                 شريكك التقني الموثوق لنمو مستدام
               </h2>

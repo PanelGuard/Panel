@@ -31,7 +31,7 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-6"
           >
-            عن <span className="text-primary">بانل جارد</span>
+            عن <span className="text-primary">بانيل جارد</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ export default function About() {
             transition={{ delay: 0.1 }}
             className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
           >
-            بانل جارد لحلول تكنولوجيا المعلومات والتدريب هي شركة رائدة في تقديم حلول تقنية متكاملة تواكب أحدث التطورات العالمية لدعم مسيرة التحول الرقمي لمختلف قطاعات الأعمال.
+            بانيل جارد لحلول تكنولوجيا المعلومات والتدريب هي شركة رائدة في تقديم حلول تقنية متكاملة تواكب أحدث التطورات العالمية لدعم مسيرة التحول الرقمي لمختلف قطاعات الأعمال.
           </motion.p>
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function About() {
                 فريقنا هو سر نجاحنا
               </h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                تضم بانل جارد نخبة من المهندسين والخبراء المعتمدين من كبرى الشركات التقنية العالمية مثل Cisco و Microsoft. يتميز فريقنا بالشغف بالتكنولوجيا والقدرة على حل أعقد المشكلات التقنية.
+                تضم بانيل جارد نخبة من المهندسين والخبراء المعتمدين من كبرى الشركات التقنية العالمية مثل Cisco و Microsoft. يتميز فريقنا بالشغف بالتكنولوجيا والقدرة على حل أعقد المشكلات التقنية.
               </p>
               <ul className="space-y-4">
                 {["خبرات متراكمة في مجالات متنوعة", "شهادات دولية معتمدة", "التدريب المستمر لمواكبة التطورات", "فهم عميق لاحتياجات السوق المحلي"].map((item, i) => (

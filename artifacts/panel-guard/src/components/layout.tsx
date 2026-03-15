@@ -77,7 +77,7 @@ export function Layout({ children }: LayoutProps) {
                 }}
               />
               <div className="hidden sm:block">
-                <h1 className="font-display font-bold text-xl text-primary leading-none">بانل جارد</h1>
+                <h1 className="font-display font-bold text-xl text-primary leading-none">بانيل جارد</h1>
                 <p className="text-xs text-muted-foreground mt-1">لحلول تكنولوجيا المعلومات</p>
               </div>
             </Link>
@@ -184,7 +184,7 @@ export function Layout({ children }: LayoutProps) {
                 />
               </div>
               <p className="text-primary-foreground/80 leading-relaxed mb-6">
-                بانل جارد هي خيارك الأول لحلول تكنولوجيا المعلومات والتدريب. نقدم خدمات متكاملة تضمن أمان واستقرار بنيتك التحتية الرقمية.
+                بانيل جارد هي خيارك الأول لحلول تكنولوجيا المعلومات والتدريب. نقدم خدمات متكاملة تضمن أمان واستقرار بنيتك التحتية الرقمية.
               </p>
             </div>
 
@@ -252,7 +252,7 @@ export function Layout({ children }: LayoutProps) {
 
           <div className="border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-primary-foreground/60 text-sm">
-              © {new Date().getFullYear()} شركة بانل جارد لحلول تكنولوجيا المعلومات. جميع الحقوق محفوظة.
+              © {new Date().getFullYear()} شركة بانيل جارد لحلول تكنولوجيا المعلومات. جميع الحقوق محفوظة.
             </p>
           </div>
         </div>
