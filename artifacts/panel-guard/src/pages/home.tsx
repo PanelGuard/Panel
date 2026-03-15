@@ -91,17 +91,22 @@ export default function Home() {
               <div className="absolute w-72 h-72 rounded-full bg-primary/10 blur-3xl animate-pulse" />
               <div className="absolute w-60 h-60 rounded-full bg-accent/10 blur-2xl animate-pulse" style={{ animationDelay: "1.5s" }} />
 
-              {/* Logo image — prominent, no background */}
-              <motion.img
-                src={`${import.meta.env.BASE_URL}logo.png`}
-                alt="Panel Guard Logo"
-                className="relative z-10 w-72 h-72 object-contain"
-                style={{
-                  filter: "drop-shadow(0 0 30px hsl(var(--primary) / 0.8)) drop-shadow(0 0 60px hsl(var(--primary) / 0.4)) drop-shadow(0 0 100px hsl(var(--accent) / 0.3))"
-                }}
+              {/* Logo image — prominent with light circular backdrop */}
+              <motion.div
+                className="relative z-10 flex items-center justify-center"
                 animate={{ y: [0, -12, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              />
+              >
+                {/* White circular backdrop to make logo pop */}
+                <div className="absolute w-72 h-72 rounded-full bg-white/95 shadow-2xl"
+                  style={{ boxShadow: "0 0 40px hsl(var(--primary) / 0.6), 0 0 80px hsl(var(--primary) / 0.3), 0 0 120px hsl(var(--accent) / 0.2)" }}
+                />
+                <img
+                  src={`${import.meta.env.BASE_URL}logo.png`}
+                  alt="Panel Guard Logo"
+                  className="relative z-10 w-64 h-64 object-contain"
+                />
+              </motion.div>
 
               {/* Floating badge */}
               <div className="absolute bottom-10 left-0 glass p-5 rounded-2xl max-w-xs shadow-xl border border-white/20 z-20"

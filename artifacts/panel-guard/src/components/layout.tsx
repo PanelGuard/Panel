@@ -91,12 +91,12 @@ export function Layout({ children }: LayoutProps) {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative">
+              <div className="relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-white shadow-lg transition-all duration-300 group-hover:scale-105"
+                style={{ boxShadow: "0 0 16px hsl(var(--primary) / 0.5), 0 0 32px hsl(var(--primary) / 0.2)" }}>
                 <img 
                   src={`${import.meta.env.BASE_URL}logo.png`} 
                   alt="Panel Guard Logo" 
-                  className="h-14 md:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105"
-                  style={{ filter: "drop-shadow(0 0 10px hsl(var(--primary) / 0.6)) drop-shadow(0 0 20px hsl(var(--primary) / 0.3))" }}
+                  className="w-12 h-12 md:w-14 md:h-14 object-contain"
                 />
               </div>
               <div className="hidden sm:block">
@@ -277,12 +277,14 @@ export function Layout({ children }: LayoutProps) {
             {/* Brand Col */}
             <div className="col-span-1 lg:col-span-1">
               <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
-                <img
-                  src={`${import.meta.env.BASE_URL}logo.png`}
-                  alt="Panel Guard Logo"
-                  className="h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105"
-                  style={{ filter: "drop-shadow(0 0 12px hsl(var(--primary) / 0.7)) drop-shadow(0 0 24px hsl(var(--primary) / 0.4))" }}
-                />
+                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white transition-all duration-300 group-hover:scale-105"
+                  style={{ boxShadow: "0 0 20px hsl(var(--primary) / 0.6), 0 0 40px hsl(var(--primary) / 0.3)" }}>
+                  <img
+                    src={`${import.meta.env.BASE_URL}logo.png`}
+                    alt="Panel Guard Logo"
+                    className="w-14 h-14 object-contain"
+                  />
+                </div>
                 <h1 className="font-display font-bold text-2xl text-primary leading-none" style={{ textShadow: "0 0 12px hsl(var(--primary) / 0.7)" }}>
                   {isAr ? "بانيل جارد" : "Panel Guard"}
                 </h1>
