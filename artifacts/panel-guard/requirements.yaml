@@ -1,0 +1,19 @@
+packages:
+  "framer-motion": "For smooth page transitions and scroll animations to give a premium feel"
+  "react-hook-form": "For robust contact form state management"
+  "@hookform/resolvers": "For Zod validation integration with react-hook-form"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility for merging Tailwind classes safely"
+
+images:
+  - path: "artifacts/panel-guard/public/images/hero-bg.png"
+    description: "Abstract digital network background with glowing nodes and lines in deep navy blue (#1a237e) and subtle dark red (#6b0000) accents, very modern corporate IT style"
+    aspect_ratio: "16:9"
+  - path: "artifacts/panel-guard/public/images/about-pattern.png"
+    description: "Subtle geometric abstract pattern in light gray and very pale navy blue, useful for background texture"
+    aspect_ratio: "16:9"
+
+notes:
+  - The application is entirely in Arabic (RTL direction).
+  - Routes are client-side only using wouter.
+  - Contact form uses a simulated mutation since backend endpoints aren't strictly defined for it yet.
