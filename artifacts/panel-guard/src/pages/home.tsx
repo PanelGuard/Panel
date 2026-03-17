@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowLeft, ArrowRight, Shield, Server, Network, MonitorPlay, CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Shield, Server, Network, MonitorPlay, CheckCircle2, ChevronLeft, ChevronRight, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSite } from "@/context/site-context";
 
@@ -74,6 +74,13 @@ export default function Home() {
                   className="px-8 py-4 glass text-foreground rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-300"
                 >
                   {isAr ? "تواصل معنا" : "Contact Us"}
+                </Link>
+                <Link
+                  href="/brochure"
+                  className="px-6 py-4 glass text-foreground/80 rounded-xl font-semibold text-base hover:bg-white/10 transition-all duration-300 flex items-center gap-2 border border-white/10 hover:border-primary/40"
+                >
+                  <Download className="w-4 h-4 text-accent" />
+                  {isAr ? "تحميل البروشور" : "Download Brochure"}
                 </Link>
               </motion.div>
             </motion.div>
