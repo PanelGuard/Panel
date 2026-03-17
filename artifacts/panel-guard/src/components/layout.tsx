@@ -1,7 +1,7 @@
 import { ReactNode, useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, MapPin, ChevronLeft, ChevronRight, Palette, Globe, ChevronDown, Network, Shield, Server, Code2, GraduationCap, MonitorPlay, Cloud, Headset, Globe2 } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, ChevronLeft, ChevronRight, Palette, Globe, ChevronDown, Network, Shield, Server, Code2, GraduationCap, MonitorPlay, Cloud, Headset, Globe2, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSite } from "@/context/site-context";
 
@@ -256,6 +256,15 @@ export function Layout({ children }: LayoutProps) {
                 </div>
               </div>
 
+              <Link
+                href="/brochure"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-primary/40 text-primary font-semibold hover:bg-primary/10 transition-all duration-300"
+                title={isAr ? "تحميل البروشور" : "Download Brochure"}
+              >
+                <Download className="w-4 h-4" />
+                <span className="hidden lg:inline">{isAr ? "بروشور" : "Brochure"}</span>
+              </Link>
+
               <Link 
                 href="/contact"
                 className="px-6 py-2.5 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 glow"
@@ -348,6 +357,16 @@ export function Layout({ children }: LayoutProps) {
                 </Link>
               ))}
               
+              {/* Brochure download in mobile */}
+              <Link
+                href="/brochure"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-3 font-semibold text-lg px-4 py-3 rounded-lg bg-primary/10 text-primary border border-primary/30 transition-colors hover:bg-primary/20"
+              >
+                <Download className="w-5 h-5" />
+                {isAr ? "تحميل البروشور" : "Download Brochure"}
+              </Link>
+
               <div className="mt-2 py-4 border-t border-white/10">
                 <p className="text-sm text-muted-foreground mb-3 px-4">{isAr ? "اختر المظهر:" : "Choose Theme:"}</p>
                 <div className="flex gap-4 px-4">
