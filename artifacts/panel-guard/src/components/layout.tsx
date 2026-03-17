@@ -1,7 +1,7 @@
 import { ReactNode, useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, MapPin, ChevronLeft, ChevronRight, Palette, Globe } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, ChevronLeft, ChevronRight, Palette, Globe, ChevronDown, Network, Shield, Server, Code2, GraduationCap, MonitorPlay, Cloud, Headset, Globe2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSite } from "@/context/site-context";
 
@@ -11,10 +11,20 @@ interface LayoutProps {
 
 const NAV_LINKS = [
   { href: "/", ar: "الرئيسية", en: "Home" },
-  { href: "/services", ar: "خدماتنا", en: "Services" },
-  { href: "/web-design", ar: "تصميم المواقع", en: "Web Design" },
   { href: "/about", ar: "من نحن", en: "About" },
   { href: "/contact", ar: "تواصل معنا", en: "Contact" },
+];
+
+const SERVICES_ITEMS = [
+  { href: "/services#network",      ar: "البنية التحتية للشبكات",     en: "Network Infrastructure",    Icon: Network },
+  { href: "/services#cybersecurity",ar: "حلول الأمن السيبراني",        en: "Cybersecurity Solutions",   Icon: Shield },
+  { href: "/services#servers",      ar: "إدارة الخوادم",               en: "Server Management",         Icon: Server },
+  { href: "/services#software",     ar: "حلول البرمجيات وتطوير الويب",  en: "Software & Web Dev",        Icon: Code2 },
+  { href: "/services#training",     ar: "التدريب التقني والشهادات",     en: "Tech Training & Certs",     Icon: GraduationCap },
+  { href: "/services#cctv",         ar: "أنظمة كاميرات المراقبة",      en: "CCTV Systems",              Icon: MonitorPlay },
+  { href: "/services#cloud",        ar: "الحلول السحابية",              en: "Cloud Solutions",           Icon: Cloud },
+  { href: "/services#support",      ar: "الدعم الفني والصيانة",         en: "Tech Support & Maintenance",Icon: Headset },
+  { href: "/web-design",            ar: "تصميم المواقع الإلكترونية",    en: "Web Design",                Icon: Globe2 },
 ];
 
 const THEMES = [
@@ -31,7 +41,10 @@ export function Layout({ children }: LayoutProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isThemeOpen, setIsThemeOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const themeRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,6 +63,9 @@ export function Layout({ children }: LayoutProps) {
     const handleClickOutside = (event: MouseEvent) => {
       if (themeRef.current && !themeRef.current.contains(event.target as Node)) {
         setIsThemeOpen(false);
+      }
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setIsServicesOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -112,25 +128,81 @@ export function Layout({ children }: LayoutProps) {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-8">
-              {NAV_LINKS.map((link) => {
+              {/* Home link */}
+              {NAV_LINKS.filter(l => l.href === "/").map((link) => {
+                const isActive = location === link.href;
+                return (
+                  <Link key={link.href} href={link.href}
+                    className={cn("font-semibold text-base transition-colors hover:text-accent relative py-2", isActive ? "text-accent" : "text-foreground/80")}>
+                    {isAr ? link.ar : link.en}
+                    {isActive && <motion.div layoutId="nav-indicator" className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent rounded-full glow" transition={{ type: "spring", stiffness: 300, damping: 30 }} />}
+                  </Link>
+                );
+              })}
+
+              {/* Services Dropdown */}
+              <div className="relative" ref={servicesRef}>
+                <button
+                  onClick={() => setIsServicesOpen(!isServicesOpen)}
+                  className={cn(
+                    "flex items-center gap-1.5 font-semibold text-base transition-colors hover:text-accent relative py-2",
+                    (location.startsWith("/services") || location.startsWith("/web-design")) ? "text-accent" : "text-foreground/80"
+                  )}
+                >
+                  {isAr ? "خدماتنا" : "Services"}
+                  <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", isServicesOpen && "rotate-180")} />
+                  {(location.startsWith("/services") || location.startsWith("/web-design")) && (
+                    <motion.div layoutId="nav-indicator" className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent rounded-full glow" transition={{ type: "spring", stiffness: 300, damping: 30 }} />
+                  )}
+                </button>
+
+                <AnimatePresence>
+                  {isServicesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                      transition={{ duration: 0.18 }}
+                      className={cn(
+                        "absolute top-full mt-2 glass rounded-2xl shadow-2xl border border-white/10 z-50 min-w-[260px] overflow-hidden",
+                        isAr ? "right-0" : "left-0"
+                      )}
+                      style={{ boxShadow: "0 8px 40px hsl(var(--primary) / 0.25)" }}
+                    >
+                      {/* View All */}
+                      <Link href="/services" onClick={() => setIsServicesOpen(false)}
+                        className="flex items-center gap-3 px-5 py-3 text-sm font-bold text-primary hover:bg-primary/10 transition-colors border-b border-white/10">
+                        {isAr ? "عرض جميع الخدمات ←" : "View All Services →"}
+                      </Link>
+                      {SERVICES_ITEMS.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setIsServicesOpen(false)}
+                          className={cn(
+                            "flex items-center gap-3 px-5 py-3 text-sm transition-colors hover:bg-primary/10 hover:text-primary group",
+                            location === item.href || location.startsWith(item.href.split("#")[0]) && item.href.includes(location.split("#")[0])
+                              ? "text-accent bg-accent/5"
+                              : "text-foreground/80"
+                          )}
+                        >
+                          <item.Icon className="w-4 h-4 text-primary/70 group-hover:text-primary shrink-0" />
+                          <span>{isAr ? item.ar : item.en}</span>
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Remaining nav links (About, Contact) */}
+              {NAV_LINKS.filter(l => l.href !== "/").map((link) => {
                 const isActive = location === link.href || (link.href !== '/' && location.startsWith(link.href));
                 return (
-                  <Link 
-                    key={link.href} 
-                    href={link.href}
-                    className={cn(
-                      "font-semibold text-base transition-colors hover:text-accent relative py-2",
-                      isActive ? "text-accent" : "text-foreground/80"
-                    )}
-                  >
+                  <Link key={link.href} href={link.href}
+                    className={cn("font-semibold text-base transition-colors hover:text-accent relative py-2", isActive ? "text-accent" : "text-foreground/80")}>
                     {isAr ? link.ar : link.en}
-                    {isActive && (
-                      <motion.div 
-                        layoutId="nav-indicator"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent rounded-full glow"
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      />
-                    )}
+                    {isActive && <motion.div layoutId="nav-indicator" className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent rounded-full glow" transition={{ type: "spring", stiffness: 300, damping: 30 }} />}
                   </Link>
                 );
               })}
@@ -217,16 +289,60 @@ export function Layout({ children }: LayoutProps) {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden glass border-b border-white/10 shadow-lg overflow-hidden fixed top-[72px] left-0 right-0 z-30"
           >
-            <div className="flex flex-col px-4 py-6 gap-4">
-              {NAV_LINKS.map((link) => (
-                <Link 
-                  key={link.href} 
-                  href={link.href}
+            <div className="flex flex-col px-4 py-6 gap-2">
+              {/* Home */}
+              <Link href="/"
+                className={cn("font-medium text-lg px-4 py-3 rounded-lg transition-colors flex items-center justify-between", location === "/" ? "bg-primary/20 text-primary" : "text-foreground hover:bg-primary/10")}>
+                {isAr ? "الرئيسية" : "Home"}
+                {isAr ? <ChevronLeft className="w-4 h-4 opacity-50" /> : <ChevronRight className="w-4 h-4 opacity-50" />}
+              </Link>
+
+              {/* Services expandable */}
+              <div>
+                <button
+                  onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
                   className={cn(
-                    "font-medium text-lg px-4 py-3 rounded-lg transition-colors flex items-center justify-between",
-                    location === link.href ? "bg-primary/20 text-primary" : "text-foreground hover:bg-primary/10"
+                    "w-full font-medium text-lg px-4 py-3 rounded-lg transition-colors flex items-center justify-between",
+                    (location.startsWith("/services") || location.startsWith("/web-design")) ? "bg-primary/20 text-primary" : "text-foreground hover:bg-primary/10"
                   )}
                 >
+                  {isAr ? "خدماتنا" : "Services"}
+                  <ChevronDown className={cn("w-4 h-4 opacity-70 transition-transform duration-200", isMobileServicesOpen && "rotate-180")} />
+                </button>
+                <AnimatePresence>
+                  {isMobileServicesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="ms-4 mt-1 border-s-2 border-primary/30 ps-4 flex flex-col gap-1">
+                        <Link href="/services" onClick={() => setIsMobileMenuOpen(false)}
+                          className="text-sm font-bold text-primary py-2 hover:text-accent transition-colors">
+                          {isAr ? "← عرض جميع الخدمات" : "View All Services →"}
+                        </Link>
+                        {SERVICES_ITEMS.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="flex items-center gap-2 py-2 text-sm text-foreground/80 hover:text-primary transition-colors"
+                          >
+                            <item.Icon className="w-4 h-4 text-primary/60 shrink-0" />
+                            {isAr ? item.ar : item.en}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* About & Contact */}
+              {NAV_LINKS.filter(l => l.href !== "/").map((link) => (
+                <Link key={link.href} href={link.href}
+                  className={cn("font-medium text-lg px-4 py-3 rounded-lg transition-colors flex items-center justify-between", location === link.href ? "bg-primary/20 text-primary" : "text-foreground hover:bg-primary/10")}>
                   {isAr ? link.ar : link.en}
                   {isAr ? <ChevronLeft className="w-4 h-4 opacity-50" /> : <ChevronRight className="w-4 h-4 opacity-50" />}
                 </Link>

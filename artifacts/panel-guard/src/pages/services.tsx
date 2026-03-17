@@ -96,11 +96,12 @@ export default function Services() {
           {SERVICES.map((service, idx) => (
             <motion.div
               key={service.id}
+              id={service.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="glass rounded-2xl p-8 border border-white/10 hover:border-primary/50 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10"
+              className="glass rounded-2xl p-8 border border-white/10 hover:border-primary/50 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10 scroll-mt-28"
             >
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="shrink-0">
