@@ -194,7 +194,9 @@ export default function Brochure() {
             <span>|</span>
             <span dir="ltr">+20 100 296 1539</span>
             <span>|</span>
-            <span>{isAr ? "محافظة الشرقية، مصر" : "Sharqia Governorate, Egypt"}</span>
+            <span>{isAr ? "الشرقية، مصر" : "Sharqia, Egypt"}</span>
+            <span>|</span>
+            <span>{isAr ? "الرياض، السعودية" : "Riyadh, Saudi Arabia"}</span>
           </div>
         </div>
 
@@ -234,7 +236,9 @@ export default function Brochure() {
                 <span>|</span>
                 <span dir="ltr">+20 100 296 1539</span>
                 <span>|</span>
-                <span>{isAr ? "محافظة الشرقية، مصر" : "Sharqia Governorate, Egypt"}</span>
+                <span>{isAr ? "الشرقية، مصر" : "Sharqia, Egypt"}</span>
+                <span>|</span>
+                <span>{isAr ? "الرياض، السعودية" : "Riyadh, Saudi Arabia"}</span>
               </div>
             </div>
           );
@@ -256,7 +260,8 @@ export default function Brochure() {
               <div className="contact-item"><span className="contact-icon">📞</span><span dir="ltr">+20 100 296 1539</span></div>
               <div className="contact-item"><span className="contact-icon">📞</span><span dir="ltr">+20 155 551 0411</span></div>
               <div className="contact-item"><span className="contact-icon">📞</span><span dir="ltr">+966 535 684 330</span></div>
-              <div className="contact-item"><span className="contact-icon">📍</span><span>{isAr ? "محافظة الشرقية، مصر" : "Sharqia Governorate, Egypt"}</span></div>
+              <div className="contact-item"><span className="contact-icon">🇪🇬</span><span>{isAr ? "محافظة الشرقية، مصر" : "Sharqia Governorate, Egypt"}</span></div>
+              <div className="contact-item"><span className="contact-icon">🇸🇦</span><span>{isAr ? "الرياض، المملكة العربية السعودية" : "Riyadh, Saudi Arabia"}</span></div>
             </div>
             <div className="contact-block">
               <h3 className="contact-sub">{isAr ? "ساعات العمل" : "Working Hours"}</h3>
@@ -293,7 +298,9 @@ export default function Brochure() {
             <span>|</span>
             <span dir="ltr">+20 100 296 1539</span>
             <span>|</span>
-            <span>{isAr ? "محافظة الشرقية، مصر" : "Sharqia Governorate, Egypt"}</span>
+            <span>{isAr ? "الشرقية، مصر" : "Sharqia, Egypt"}</span>
+            <span>|</span>
+            <span>{isAr ? "الرياض، السعودية" : "Riyadh, Saudi Arabia"}</span>
           </div>
         </div>
 

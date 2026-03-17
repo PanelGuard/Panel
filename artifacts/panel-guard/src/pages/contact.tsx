@@ -69,11 +69,23 @@ export default function Contact() {
               <div className="w-14 h-14 bg-primary/20 text-primary rounded-xl flex items-center justify-center mb-6 glow">
                 <MapPin className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold mb-2 text-foreground">{isAr ? "العنوان" : "Address"}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {isAr ? "محافظة الشرقية،" : "Sharqia Governorate,"}<br/>
-                {isAr ? "جمهورية مصر العربية" : "Egypt"}
-              </p>
+              <h3 className="text-xl font-bold mb-2 text-foreground">{isAr ? "العناوين" : "Addresses"}</h3>
+              <div className="text-muted-foreground leading-relaxed space-y-3">
+                <div className="flex items-start gap-2">
+                  <span className="text-accent font-bold text-xs mt-1 shrink-0">🇪🇬</span>
+                  <span>
+                    {isAr ? "محافظة الشرقية،" : "Sharqia Governorate,"}<br/>
+                    {isAr ? "جمهورية مصر العربية" : "Egypt"}
+                  </span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-accent font-bold text-xs mt-1 shrink-0">🇸🇦</span>
+                  <span>
+                    {isAr ? "الرياض،" : "Riyadh,"}<br/>
+                    {isAr ? "المملكة العربية السعودية" : "Saudi Arabia"}
+                  </span>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div 

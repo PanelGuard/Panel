@@ -92,7 +92,9 @@ export function Layout({ children }: LayoutProps) {
           </div>
           <div className="flex items-center gap-2">
             <MapPin className="w-4 h-4" />
-            <span className="mt-1">{isAr ? "محافظة الشرقية، مصر" : "Sharqia Governorate, Egypt"}</span>
+            <span className="mt-1">{isAr ? "الشرقية، مصر" : "Sharqia, Egypt"}</span>
+            <span className="text-border/50">|</span>
+            <span className="mt-1">{isAr ? "الرياض، السعودية" : "Riyadh, Saudi Arabia"}</span>
           </div>
         </div>
       </div>
@@ -478,7 +480,10 @@ export function Layout({ children }: LayoutProps) {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-accent shrink-0 mt-1" />
-                  <span className="text-foreground/80">{isAr ? "محافظة الشرقية، مصر" : "Sharqia Governorate, Egypt"}</span>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-foreground/80">{isAr ? "محافظة الشرقية، مصر" : "Sharqia Governorate, Egypt"}</span>
+                    <span className="text-foreground/80">{isAr ? "الرياض، المملكة العربية السعودية" : "Riyadh, Saudi Arabia"}</span>
+                  </div>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-accent shrink-0" />
