@@ -16,14 +16,14 @@ const NAV_LINKS = [
 ];
 
 const SERVICES_ITEMS = [
-  { href: "/services#network",      ar: "البنية التحتية للشبكات",     en: "Network Infrastructure",    Icon: Network },
-  { href: "/services#cybersecurity",ar: "حلول الأمن السيبراني",        en: "Cybersecurity Solutions",   Icon: Shield },
-  { href: "/services#servers",      ar: "إدارة الخوادم",               en: "Server Management",         Icon: Server },
-  { href: "/services#software",     ar: "حلول البرمجيات وتطوير الويب",  en: "Software & Web Dev",        Icon: Code2 },
-  { href: "/services#training",     ar: "التدريب التقني والشهادات",     en: "Tech Training & Certs",     Icon: GraduationCap },
-  { href: "/services#cctv",         ar: "أنظمة كاميرات المراقبة",      en: "CCTV Systems",              Icon: MonitorPlay },
-  { href: "/services#cloud",        ar: "الحلول السحابية",              en: "Cloud Solutions",           Icon: Cloud },
-  { href: "/services#support",      ar: "الدعم الفني والصيانة",         en: "Tech Support & Maintenance",Icon: Headset },
+  { href: "/services/network",      ar: "البنية التحتية للشبكات",     en: "Network Infrastructure",    Icon: Network },
+  { href: "/services/cybersecurity",ar: "حلول الأمن السيبراني",        en: "Cybersecurity Solutions",   Icon: Shield },
+  { href: "/services/servers",      ar: "إدارة الخوادم",               en: "Server Management",         Icon: Server },
+  { href: "/services/software",     ar: "حلول البرمجيات وتطوير الويب",  en: "Software & Web Dev",        Icon: Code2 },
+  { href: "/services/training",     ar: "التدريب التقني والشهادات",     en: "Tech Training & Certs",     Icon: GraduationCap },
+  { href: "/services/cctv",         ar: "أنظمة كاميرات المراقبة",      en: "CCTV Systems",              Icon: MonitorPlay },
+  { href: "/services/cloud",        ar: "الحلول السحابية",              en: "Cloud Solutions",           Icon: Cloud },
+  { href: "/services/support",      ar: "الدعم الفني والصيانة",         en: "Tech Support & Maintenance",Icon: Headset },
   { href: "/web-design",            ar: "تصميم المواقع الإلكترونية",    en: "Web Design",                Icon: Globe2 },
 ];
 
