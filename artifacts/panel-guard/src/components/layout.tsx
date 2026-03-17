@@ -12,6 +12,7 @@ interface LayoutProps {
 const NAV_LINKS = [
   { href: "/", ar: "الرئيسية", en: "Home" },
   { href: "/services", ar: "خدماتنا", en: "Services" },
+  { href: "/web-design", ar: "تصميم المواقع", en: "Web Design" },
   { href: "/about", ar: "من نحن", en: "About" },
   { href: "/contact", ar: "تواصل معنا", en: "Contact" },
 ];
